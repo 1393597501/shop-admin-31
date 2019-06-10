@@ -40,24 +40,29 @@ export default {
                     upwd:this.ruleForm.upwd
                 }
                 //  调用axios
-                this.$axios({
-                    // 请求的地址
-                    url: "http://localhost:8899/admin/account/login",
-                    // 请求方式
-                    method: "POST",
-                    // 数据
-                    data,
-                     // 处理session跨域
-                    withCredentials: true
-                }).then(res => {
-                    const {message,status} = res.data;
-                    if(status===0){
-                           this.$router.push('/'); 
-                    }
-                    if(status===1){
-                           this.$message.error(message);
+                this.$refs.ruleForm.validate((valid)=>{
+                    if(valid){
+                        this.$axios({
+                            // 请求的地址
+                            url: "http://localhost:8899/admin/account/login",
+                            // 请求方式
+                            method: "POST",
+                            // 数据
+                            data,
+                            // 处理session跨域
+                            withCredentials: true
+                        }).then(res => {
+                            const {message,status} = res.data;
+                            if(status===0){
+                                this.$router.push('/'); 
+                            }
+                            if(status===1){
+                                this.$message.error(message);
+                            }
+                        })
                     }
                 })
+           
             }
         }
 }

@@ -9,7 +9,7 @@
             </el-header>
             <el-main>
                 <Breadcrumb/>
-                Main
+                <router-view></router-view>
             </el-main>
         </el-container>
     </el-container>

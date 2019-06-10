@@ -1,15 +1,38 @@
 <template>
  <div class="Breadcrumb">
     <el-breadcrumb separator="/">
-        <el-breadcrumb-item><a href="/">后台管理</a></el-breadcrumb-item>
-        <el-breadcrumb-item>商品列表</el-breadcrumb-item>
+        <el-breadcrumb-item v-for="(item, index) in info" :key="index">
+                {{item}}
+        </el-breadcrumb-item>
     </el-breadcrumb>
  </div>    
 </template>
 
 <script>
 export default {
-
+    data(){
+        return {
+             info:[]   
+        }
+    },
+    watch:{
+        $route(){
+            this.getRoute();
+        }
+    },
+    methods:{
+        getRoute(){
+            const arr = this.$route.matched;
+            let info = [];
+            arr.forEach(v => {
+                info.push(v.meta);
+            });
+            this.info = info;
+        }
+    },
+    mounted(){
+      this.getRoute()
+    }
 }
 </script>
 
@@ -17,5 +40,6 @@ export default {
 .Breadcrumb{
     padding-bottom: 10px;
     border-bottom: 1px #ddd solid;
+    margin-bottom: 20px;
 }
 </style>
