@@ -4,7 +4,7 @@
         <el-row type="flex" justify="space-between">
             <!-- 按钮列表 -->
             <div>
-                <el-button>新增</el-button>
+                <el-button @click="headleGoodsAdd">新增</el-button>
                 <el-button type="danger" @click="handleDeleteMore">删除</el-button>
             </div>
             
@@ -118,11 +118,13 @@ export default {
             tableData: [],
             pageIndex:1,
             pageSize:5,
-            allId:'',
             total:0
         }
         },
      methods: {
+         headleGoodsAdd(){
+                this.$router.push('/admin/goods-add');
+         },
          getDel(id){
             this.$axios({
                     method:'GET',
@@ -156,6 +158,7 @@ export default {
         },
         handleEdit(index, row) {
             console.log(index, row);
+            this.$router.push("/admin/goods-edit/"+index.id);
         },
         handleDelete(goods) {
             const id = goods.id;

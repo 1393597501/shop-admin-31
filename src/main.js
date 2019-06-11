@@ -12,6 +12,8 @@ import Login from './pages/Login.vue'
 import Admin from './pages/Admin.vue'
 import GoodList from './pages/goods-list.vue'
 import CategoryList from './pages/category-list.vue'
+import GoodsAdd from './pages/goods-add.vue'
+import GoodsEdit from './pages/goods-edit.vue'
 
 // 注册插件 注册路由
 Vue.use(ElementUI);
@@ -23,7 +25,9 @@ const routes = [
   {path:'*',redirect:'/admin/goods-list',meta:"商品管理"},
   {path:'/admin',meta:"后台管理",component:Admin,children:[
     {path:'goods-list',component:GoodList,meta:"商品管理"},
-    {path:'category-list',component:CategoryList,meta:"栏目管理"}
+    {path:'category-list',component:CategoryList,meta:"栏目管理"},
+    {path:'goods-add',component:GoodsAdd,meta:"添加商品"},
+    {path:'goods-edit/:id',component:GoodsEdit,meta:"编辑商品"}
   ]},
 ];
 
