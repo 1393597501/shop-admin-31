@@ -35,6 +35,29 @@ const routes = [
 var router = new VueRouter({
   routes
 })
+  router.beforeEach((to,from,next)=>{
+        axios({
+          method:'GET',
+          url:'http://localhost:8899/admin/account/islogin',
+          withCredentials: true
+    }).then(res=>{
+      const {code} = res.data;
+      if(to.path==="/login"){
+            if(code=="logined"){
+              next("/admin/goods-list");
+            }else{
+              next();
+            }    
+      }else{
+          if(code==="logined"){
+            next();
+          }else{
+            next("/login");
+          }
+      }
+    })
+  })
+  
 
 Vue.config.productionTip = false
 

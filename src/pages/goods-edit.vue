@@ -190,7 +190,13 @@ import { quillEditor } from 'vue-quill-editor'
                 if(status===0){
                   this.form = {
                         ...message,
-                        category_id: + message.category_id
+                        category_id: + message.category_id,
+                        fileList: message.fileList.map(v=>{
+                                  return {
+                                    ...v,
+                                    url:`http://localhost:8899${v.shorturl}`
+                                  }
+                        })
                   }
                   this.imageUrl = message.imgList[0].url;
                 }
@@ -234,10 +240,12 @@ import { quillEditor } from 'vue-quill-editor'
     line-height: 178px;
     text-align: center;
   }
+
   .avatar {
     width: 178px;
     height: 178px;
     display: block;
+    object-fit:cover;
   }
 
 </style>
