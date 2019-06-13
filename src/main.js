@@ -6,6 +6,8 @@ import VueRouter from 'vue-router'
 // 引入element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+// 导入vuex的store
+import store from "./store";
 
 //导入组件
 import Login from './pages/Login.vue'
@@ -65,5 +67,6 @@ Vue.prototype.$axios = axios;
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')//绑定控制区域

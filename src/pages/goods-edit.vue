@@ -141,9 +141,14 @@ import { quillEditor } from 'vue-quill-editor'
       },
 
          // 多张图片删除的事件
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
+        handleRemove(file, fileList) {
+            // 把删除之后的列表赋值给this.form.fileList
+            const files = fileList.map(v => {
+                return v.response;
+            });
+
+            this.form.fileList = files;
+        },
          // 图片的预览
       handlePictureCardPreview(file) {
         this.dialogImageUrl = file.url;
